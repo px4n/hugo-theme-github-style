@@ -48,6 +48,120 @@ pin: true
 
 Hugo will create a post with `draft: true`, change it to false in order for it to show in the website.
 
+## Bilingual/Multilingual Support
+
+This theme supports multiple languages out of the box. Here's how to set it up:
+
+### 1. Configure Languages in hugo.toml
+
+```toml
+defaultContentLanguage = 'en'
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    title = "My Site"
+    [languages.en.params]
+      subtitle = "My awesome site"
+      # ... other params
+
+  [languages.fr]
+    languageName = "Français"
+    title = "Mon Site"
+    [languages.fr.params]
+      subtitle = "Mon site génial"
+      # ... other params
+```
+
+### 2. Create Content Files
+
+Create separate content files for each language:
+- `content/about/index.en.md` (English)
+- `content/about/index.fr.md` (French)
+- `content/post/my-post.en.md` (English)
+- `content/post/my-post.fr.md` (French)
+
+### 3. Add Language Flags
+
+The theme includes flag support for common languages. To add flags for additional languages:
+
+1. Edit `themes/github-style/data/flags.toml`
+2. Add your language code and flag emoji:
+
+```toml
+fr = "🇫🇷"    # French
+de = "🇩🇪"    # German
+es = "🇪🇸"    # Spanish
+# Add any language you need
+```
+
+If a language doesn't have a flag configured, it will show a 🌐 globe icon.
+
+### 4. Create Translation Files
+
+For each language, create translation files in your site's `i18n/` directory:
+
+**i18n/en.toml:**
+```toml
+[overview]
+other = "Overview"
+
+[posts]
+other = "Posts"
+
+[about]
+other = "About"
+```
+
+**i18n/fr.toml:**
+```toml
+[overview]
+other = "Aperçu"
+
+[posts]
+other = "Articles"
+
+[about]
+other = "À propos"
+```
+
+### 5. Language Switcher
+
+The theme automatically displays a language switcher in the header when multiple languages are configured. It will:
+- Show the current language with its flag
+- Link to translated versions of the current page when available
+- Fall back to the homepage if no translation exists
+- Use click-to-open dropdown (no more hover frustration!)
+
+### Available Translation Keys
+
+The theme uses these translation keys that you can customize:
+
+- `overview` - Navigation overview link
+- `posts` - Posts section name
+- `about` - About section name
+- `readMore` - Read more link text
+- `readOtherPosts` - Other posts navigation
+- `newerPosts` - Newer posts pagination
+- `olderPosts` - Older posts pagination
+- `minuteReadingTime` - Reading time suffix
+- `words` - Word count suffix
+- `search` - Search functionality
+- `searchPlaceholder` - Search input placeholder
+- `tags` - Tags section
+- `categories` - Categories section
+- `lastUpdated` - Last updated text
+- `pageNotFound` - 404 error message
+- `backToHome` - Back to home link
+- `results` - Search results text
+- `for` - Search "for" text
+- `clearFilter` - Clear filter button
+- `created` - Created date text
+- `previous` - Previous pagination
+- `next` - Next pagination
+
+The theme will automatically fall back to English if a translation is missing.
+
 ```
 hugo new post/title_of_the_post.md
 ```

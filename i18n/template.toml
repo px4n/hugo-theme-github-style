@@ -1,0 +1,92 @@
+# i18n Template
+# Copy this file to your site's i18n/{language}.toml to add translations
+# Example: i18n/fr.toml, i18n/es.toml, etc.
+
+# Navigation
+[overview]
+other = "Overview"
+
+[blog]
+other = "Blog"
+
+[posts]
+other = "Posts"
+
+[project]
+other = "Projects"
+
+[article]
+other = "Articles"
+
+[tutorial]
+other = "Tutorials"
+
+[research]
+other = "Research"
+
+[about]
+other = "About Me"
+
+# Content actions
+[readMore]
+other = "Read more"
+
+[readOtherPosts]
+other = "Read other posts"
+
+# Pagination
+[newerPosts]
+other = "Newer posts"
+
+[olderPosts]
+other = "Older posts"
+
+[previous]
+other = "Previous"
+
+[next]
+other = "Next"
+
+# Reading info
+[minuteReadingTime]
+other = "min read"
+
+[words]
+other = "words"
+
+# Search
+[search]
+other = "Search"
+
+[searchPlaceholder]
+other = "Search"
+
+[results]
+other = "results"
+
+[for]
+other = "for"
+
+[clearFilter]
+other = "Clear filter"
+
+# Organization
+[tags]
+other = "Tags"
+
+[categories]
+other = "Categories"
+
+# Timestamps
+[created]
+other = "Created"
+
+[lastUpdated]
+other = "Last updated"
+
+# Error pages
+[pageNotFound]
+other = "Page not found..."
+
+[backToHome]
+other = "Back to home page"

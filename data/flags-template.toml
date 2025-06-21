@@ -1,0 +1,40 @@
+# Language Flags Template
+# Copy this file to your site's data/flags.toml to customize flags
+# This will override the theme's default flags
+
+# Common languages with their flag emojis:
+en = "🇺🇸"    # English (US)
+# en = "🇬🇧"  # Alternative: English (UK)
+ja = "🇯🇵"    # Japanese
+fr = "🇫🇷"    # French
+de = "🇩🇪"    # German  
+es = "🇪🇸"    # Spanish
+pt = "🇵🇹"    # Portuguese
+it = "🇮🇹"    # Italian
+ru = "🇷🇺"    # Russian
+zh = "🇨🇳"    # Chinese (Simplified)
+ko = "🇰🇷"    # Korean
+ar = "🇸🇦"    # Arabic
+hi = "🇮🇳"    # Hindi
+th = "🇹🇭"    # Thai
+vi = "🇻🇳"    # Vietnamese
+nl = "🇳🇱"    # Dutch
+sv = "🇸🇪"    # Swedish
+no = "🇳🇴"    # Norwegian
+da = "🇩🇰"    # Danish
+fi = "🇫🇮"    # Finnish
+pl = "🇵🇱"    # Polish
+tr = "🇹🇷"    # Turkish
+he = "🇮🇱"    # Hebrew
+fa = "🇮🇷"    # Persian/Farsi
+ur = "🇵🇰"    # Urdu
+bn = "🇧🇩"    # Bengali
+
+# Regional variants:
+# pt_BR = "🇧🇷"  # Portuguese (Brazil)
+# en_GB = "🇬🇧"  # English (UK)
+# fr_CA = "🇨🇦"  # French (Canada)
+# es_MX = "🇲🇽"  # Spanish (Mexico)
+# zh_TW = "🇹🇼"  # Chinese (Traditional/Taiwan)
+
+# Note: If a language is not defined here, the theme will show 🌐 (globe icon)

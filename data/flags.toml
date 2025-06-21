@@ -1,0 +1,28 @@
+# Language Flags Configuration
+# Add any language code and its corresponding flag emoji
+# Format: language_code = "flag_emoji"
+
+en = "🇺🇸"
+ja = "🇯🇵"
+
+# Examples of other languages that users can uncomment/add:
+# fr = "🇫🇷"    # French
+# de = "🇩🇪"    # German  
+# es = "🇪🇸"    # Spanish
+# pt = "🇵🇹"    # Portuguese
+# it = "🇮🇹"    # Italian
+# ru = "🇷🇺"    # Russian
+# zh = "🇨🇳"    # Chinese (Simplified)
+# ko = "🇰🇷"    # Korean
+# ar = "🇸🇦"    # Arabic
+# hi = "🇮🇳"    # Hindi
+# th = "🇹🇭"    # Thai
+# vi = "🇻🇳"    # Vietnamese
+# nl = "🇳🇱"    # Dutch
+# sv = "🇸🇪"    # Swedish
+# no = "🇳🇴"    # Norwegian
+# da = "🇩🇰"    # Danish
+# fi = "🇫🇮"    # Finnish
+# pl = "🇵🇱"    # Polish
+# tr = "🇹🇷"    # Turkish
+# he = "🇮🇱"    # Hebrew

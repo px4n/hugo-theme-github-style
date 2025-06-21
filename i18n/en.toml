@@ -1,0 +1,98 @@
+[overview]
+other = "Overview"
+
+[posts]
+other = "Posts"
+
+[about]
+other = "About Me"
+
+[readMore]
+other = "Read more"
+
+[readOtherPosts]
+other = "Read other posts"
+
+[newerPosts]
+other = "Newer posts"
+
+[olderPosts]
+other = "Older posts"
+
+[minuteReadingTime]
+other = "min read"
+
+[words]
+other = "words"
+
+[search]
+other = "Search"
+
+[searchPlaceholder]
+other = "Search"
+
+[tags]
+other = "Tags"
+
+[categories]
+other = "Categories"
+
+[lastUpdated]
+other = "Last updated"
+
+[pageNotFound]
+other = "Page not found..."
+
+[backToHome]
+other = "Back to home page"
+
+[results]
+other = "results"
+
+[for]
+other = "for"
+
+[clearFilter]
+other = "Clear filter"
+
+[created]
+other = "Created"
+
+[previous]
+other = "Previous"
+
+[next]
+other = "Next"
+
+[pinned]
+other = "Pinned"
+
+[popular_posts]
+other = "Popular posts"
+
+[post_activity]
+other = "Post activity"
+
+[blog]
+other = "Blog"
+
+[project]
+other = "Projects"
+
+[article]
+other = "Articles"
+
+[content_activity]
+other = "Content activity"
+
+[showcase]
+other = "Showcase"
+
+[readme]
+other = "README"
+
+[activity_less]
+other = "Less"
+
+[activity_more]
+other = "More"

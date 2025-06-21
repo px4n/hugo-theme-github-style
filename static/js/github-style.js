@@ -10,15 +10,14 @@ let contributions;
     return;
   }
 
-  contributions = JSON.parse(dom.getAttribute('data'));
+  contributions = JSON.parse(decodeURIComponent(dom.getAttribute('data')));
   let year = 0;
   for (const item of contributions) {
-    item.publishDate = decodeURI(item.publishDate).replace(' ', 'T');
+    item.publishDate = item.publishDate.replace(' ', 'T');
     item.date = new Date(item.publishDate);
     if (item.date.getFullYear() > year) {
       year = item.date.getFullYear();
     }
-    item.title = decodeURI(item.title);
   }
 
   yearList();
@@ -50,12 +49,12 @@ function switchYear(year) {
     }
   }
   posts.sort((a, b) => { return b - a });
-  document.querySelector('#posts-activity').innerHTML = '';
+  document.querySelector('#content-activity').innerHTML = '';
   for (const time of ms) {
     const node = document.createElement('div');
     const array = time.split("-");
     node.innerHTML = monthly(array[0], Number(array[1]), posts);
-    document.querySelector('#posts-activity').appendChild(node);
+    document.querySelector('#content-activity').appendChild(node);
   }
 
   graph(year, posts, startDate, endDate);
@@ -107,7 +106,7 @@ function monthly(year, month, posts) {
           <details class="Details-element details-reset" open>
             <summary role="button" class="btn-link f4 muted-link no-underline lh-condensed width-full">
               <span class="color-text-primary ws-normal text-left">
-                Created ${monthPosts.length} post${monthPosts.length > 1 ? 's' : ''}
+                Created ${monthPosts.length} item${monthPosts.length > 1 ? 's' : ''}
               </span>
               <span class="d-inline-block float-right color-icon-secondary">
                 <span class="Details-content--open float-right">
@@ -156,11 +155,11 @@ function yearList() {
 }
 
 function graph(year, posts, startDate, endDate) {
-  const postsStr = posts.length === 1 ? "post" : "posts";
+  const itemsStr = posts.length === 1 ? "item" : "items";
   if (year === now.getFullYear().toString()) {
-    document.querySelector('#posts-count').innerText = `${posts.length}  ${postsStr} in the last year`;
+    document.querySelector('#content-count').innerText = `${posts.length}  ${itemsStr} in the last year`;
   } else {
-    document.querySelector('#posts-count').innerText = `${posts.length}  ${postsStr} in ${year}`;
+    document.querySelector('#content-count').innerText = `${posts.length}  ${itemsStr} in ${year}`;
   }
 
   let html = ``;
@@ -262,7 +261,7 @@ function svgTip(elem, count, dateStr) {
   const date = new Date(dateStr);
   const dateFmt = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
   if (count) {
-    svgElem.innerHTML = `<strong>${count} posts</strong> on ${dateFmt}`;
+    svgElem.innerHTML = `<strong>${count} post${count > 1 ? 's' : ''}</strong> on ${dateFmt}`;
   } else {
     svgElem.innerHTML = `<strong>No posts</strong> on ${dateFmt}`;
   }
@@ -327,3 +326,78 @@ function setRelativeTime() {
     elem.setAttribute('title', new Date(dateStr).toLocaleString());
   });
 }
+
+// Language Dropdown functionality
+function toggleLanguageDropdown() {
+  const dropdown = document.getElementById('languageDropdown');
+  const isOpen = dropdown.classList.contains('show');
+  
+  if (isOpen) {
+    closeLanguageDropdown();
+  } else {
+    openLanguageDropdown();
+  }
+}
+
+function openLanguageDropdown() {
+  const dropdown = document.getElementById('languageDropdown');
+  dropdown.classList.add('show');
+  
+  // Add click listener to close dropdown when clicking outside
+  setTimeout(() => {
+    document.addEventListener('click', handleOutsideClick);
+  }, 0);
+}
+
+function closeLanguageDropdown() {
+  const dropdown = document.getElementById('languageDropdown');
+  dropdown.classList.remove('show');
+  document.removeEventListener('click', handleOutsideClick);
+}
+
+function handleOutsideClick(event) {
+  const dropdown = document.getElementById('languageDropdown');
+  if (dropdown && !dropdown.contains(event.target)) {
+    closeLanguageDropdown();
+  }
+}
+
+// Close dropdown when pressing Escape key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeLanguageDropdown();
+  }
+});
+
+// Handle keyboard navigation in dropdown
+document.addEventListener('keydown', function(event) {
+  const dropdown = document.getElementById('languageDropdown');
+  if (!dropdown || !dropdown.classList.contains('show')) return;
+  
+  const items = dropdown.querySelectorAll('.dropdown-item');
+  const currentFocus = document.activeElement;
+  
+  if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    let nextIndex = 0;
+    
+    for (let i = 0; i < items.length; i++) {
+      if (items[i] === currentFocus) {
+        nextIndex = (i + 1) % items.length;
+        break;
+      }
+    }
+    items[nextIndex].focus();
+  } else if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    let prevIndex = items.length - 1;
+    
+    for (let i = 0; i < items.length; i++) {
+      if (items[i] === currentFocus) {
+        prevIndex = (i - 1 + items.length) % items.length;
+        break;
+      }
+    }
+    items[prevIndex].focus();
+  }
+});

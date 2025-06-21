@@ -1,12 +1,12 @@
 {{ define "overview" }}
 {{ $pinned := where .Site.Pages "Params.pin" true }}
 {{ $section := $pinned }}
-{{ $section_title := "Pinned" }}
+{{ $section_title := i18n "pinned" | default "Pinned" }}
 
 {{ if ne (len $pinned) 0}}
 {{ else }}
-{{ $section = where .Site.RegularPages "Section" "in" (slice "post") }}
-{{ $section_title = "Popular posts" }}
+{{ $section = where .Site.RegularPages "Section" "in" (slice "blog") }}
+{{ $section_title = i18n "popular_posts" | default "Popular posts" }}
 {{ end }}
 <div>
   <div class="position-relative">
@@ -23,7 +23,7 @@
                 d="M4 8a1 1 0 012 0v1a1 1 0 01-2 0V8zm2.078 2.492c-.083-.264.146-.492.422-.492h3c.276 0 .505.228.422.492C9.67 11.304 8.834 12 8 12c-.834 0-1.669-.696-1.922-1.508zM10 8a1 1 0 112 0v1a1 1 0 11-2 0V8z">
               </path>
             </svg>
-            README<span class="text-gray-light">.md</span>
+            {{ i18n "readme" | default "README" }}<span class="text-gray-light">.md</span>
           </div>
         </div>
         <article class="markdown-body entry-content container-lg f5">
@@ -82,17 +82,11 @@
       </div>
     </div>
 
-    {{ $section := where .Site.RegularPages "Section" "in" (slice "post") }}
-    <div class="mt-4 position-relative" id="contributions" data='[{{ range $index, $elem := $section }}
-{
-  "title": "{{ .Title }}",
-  "link": "{{ .Permalink }}",
-  "publishDate": "{{ .PublishDate.Format "2006-01-02 15:04:05" }}"
-}{{ if ne $index (sub (len $section) 1) }},{{ end }}
-{{ end }}]'>
+    {{ $posts := where .Site.RegularPages "Section" "in" (slice "blog" "project" "article") }}
+    <div class="mt-4 position-relative" id="contributions" data='[{{ range $index, $elem := $posts }}{{ if ne $index 0 }},{{ end }}{{ dict "title" .Title "link" .Permalink "publishDate" (.PublishDate.Format "2006-01-02 15:04:05") | jsonify }}{{ end }}]'>
       <div class="js-yearly-contributions">
         <div class="position-relative">
-          <h2 class="f4 text-normal mb-2" id="posts-count"></h2>
+          <h2 class="f4 text-normal mb-2" id="content-count"></h2>
           <div class="border py-2 graph-before-activity-overview">
             <div
               class="js-calendar-graph mx-md-2 mx-3 d-flex flex-column flex-items-end flex-xl-items-center overflow-hidden pt-1 is-graph-loading graph-canvas calendar-graph height-full text-center">
@@ -105,7 +99,7 @@
               <div class="float-left text-gray">
               </div>
               <div class="contrib-legend text-gray">
-                Less
+                {{ i18n "activity_less" | default "Less" }}
                 <ul class="legend">
                   <li style="background-color: var(--color-calendar-graph-day-bg)"></li>
                   <li style="background-color: var(--color-calendar-graph-day-L1-bg)"></li>
@@ -113,7 +107,7 @@
                   <li style="background-color: var(--color-calendar-graph-day-L3-bg)"></li>
                   <li style="background-color: var(--color-calendar-graph-day-L4-bg)"></li>
                 </ul>
-                More
+                {{ i18n "activity_more" | default "More" }}
               </div>
             </div>
           </div>
@@ -132,10 +126,10 @@
         </div>
 
         <h2 class="f4 text-normal mt-4 mb-3">
-          Post activity
+          {{ i18n "content_activity" | default "Content activity" }}
         </h2>
 
-        <div id="posts-activity">
+        <div id="content-activity">
         </div>
       </div>
 
@@ -145,6 +139,7 @@
 
   </div>
 </div>
+
 
 
 <div id="svg-tip" class="svg-tip svg-tip-one-line" style="pointer-events: none; display: none;">

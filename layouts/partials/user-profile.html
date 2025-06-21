@@ -3,7 +3,8 @@
   <div class="gutter-condensed gutter-lg flex-column flex-md-row d-flex">
     <div class="flex-shrink-0 col-12 col-md-3 mb-4 mb-md-0">
       <div class="h-card mt-md-n5" style="margin-top:24px">
-        <div class="user-profile-sticky-bar js-user-profile-sticky-bar d-none d-md-block" id="headerStuck">
+        <div class="user-profile-sticky-bar js-user-profile-sticky-bar d-none d-md-block"
+          id="headerStuck">
           <div class="user-profile-mini-vcard d-table">
             <span class="user-profile-mini-avatar d-table-cell v-align-middle lh-condensed-ultra pr-2">
               {{ with $.Site.Params.avatar }}
@@ -162,15 +163,28 @@
 
           {{ if .Site.Params.links }}
           {{ range .Site.Params.links }}
-          {{ if .icon }}
-          <a style="margin: 0 10px 10px 0;" href="{{ .href }}">
-            <img alt="@{{ .title }}" width="32" height="32" src="{{ .icon }}" class="avatar">
+          {{ $href := .href | default .link }}
+          {{ $linkTitle := .title | default "Custom Link" }}
+          <a style="margin: 0 10px 10px 0;" href="{{ $href }}">
+            {{ if and .icon_pack .icon }}
+            <!-- FontAwesome icon with optional styling and animations -->
+            {{ $iconClasses := printf "%s fa-%s" .icon_pack .icon }}
+            {{ if .animation }}{{ $iconClasses = printf "%s fa-%s" $iconClasses .animation }}{{ end }}
+            {{ if .style }}{{ $iconClasses = printf "%s fa-%s" $iconClasses .style }}{{ end }}
+            {{ $iconStyle := "font-size: 32px; width: 32px; height: 32px; display: inline-block; text-align: center; line-height: 32px;" }}
+            {{ if .color }}{{ $iconStyle = printf "%s color: %s;" $iconStyle .color }}{{ end }}
+            {{ if .hover_color }}{{ $iconStyle = printf "%s transition: color 0.3s ease;" $iconStyle }}{{ end }}
+            <i class="{{ $iconClasses }}"
+               style="{{ $iconStyle | safeCSS }}"
+               {{ if .hover_color }}onmouseover="this.style.color='{{ .hover_color }}'" onmouseout="this.style.color='{{ .color | default "inherit" }}'"{{ end }}></i>
+            {{ else if .icon }}
+            <!-- Custom image icon -->
+            <img alt="@{{ $linkTitle }}" width="32" height="32" src="{{ .icon }}" class="avatar">
+            {{ else }}
+            <!-- Default link icon -->
+            <img alt="@{{ $linkTitle }}" width="32" height="32" src='{{ "images/link.png" | absURL }}' class="avatar">
+            {{ end }}
           </a>
-          {{ else }}
-          <a style="margin: 0 10px 10px 0;" href="{{ .href }}">
-            <img alt="@{{ .title }}" width="32" height="32" src='{{ "images/link.png" | absURL }}' class="avatar">
-          </a>
-          {{ end }}
           {{ end }}
           {{ end }}
 
@@ -223,6 +237,7 @@ else {
     githubIconElement.setAttribute('class', 'octicon')
     githubIconElement.setAttribute('color', '#f0f6fc')
   }
-  if (twitterIconElement)  twitterIconElement.setAttribute('fill', 'white') 
+  if (twitterIconElement)  twitterIconElement.setAttribute('fill', 'white')
 }
+
 </script>
