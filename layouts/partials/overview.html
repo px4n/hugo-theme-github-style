@@ -5,7 +5,8 @@
 
 {{ if ne (len $pinned) 0}}
 {{ else }}
-{{ $section = where .Site.RegularPages "Section" "in" (slice "blog") }}
+{{ $popularSections := .Site.Params.popularSections | default (slice "blog" "project" "article") }}
+{{ $section = where .Site.RegularPages "Section" "in" $popularSections }}
 {{ $section_title = i18n "popular_posts" | default "Popular posts" }}
 {{ end }}
 <div>
@@ -53,6 +54,8 @@
                   <a class="text-bold flex-auto min-width-0" href="{{ .Permalink }}">
                     <span class="repo" title="{{ .Title }}">{{ .Title }}</span>
                   </a>
+                  <!-- Section identifier badge -->
+                  <span class="Label Label--secondary ml-2 flex-shrink-0" style="font-size: 11px;">{{ i18n .Section | default (title .Section) }}</span>
                 </div>
 
 
@@ -82,7 +85,8 @@
       </div>
     </div>
 
-    {{ $posts := where .Site.RegularPages "Section" "in" (slice "blog" "project" "article") }}
+    {{ $contributionSections := .Site.Params.contributionSections | default (slice "blog" "project" "article") }}
+    {{ $posts := where .Site.RegularPages "Section" "in" $contributionSections }}
     <div class="mt-4 position-relative" id="contributions" data='[{{ range $index, $elem := $posts }}{{ if ne $index 0 }},{{ end }}{{ dict "title" .Title "link" .Permalink "publishDate" (.PublishDate.Format "2006-01-02 15:04:05") | jsonify }}{{ end }}]'>
       <div class="js-yearly-contributions">
         <div class="position-relative">
