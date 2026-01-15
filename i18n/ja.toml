@@ -1,0 +1,98 @@
+[overview]
+other = "概要"
+
+[posts]
+other = "投稿"
+
+[about]
+other = "私について"
+
+[readMore]
+other = "続きを読む"
+
+[readOtherPosts]
+other = "他の投稿を読む"
+
+[newerPosts]
+other = "新しい投稿"
+
+[olderPosts]
+other = "古い投稿"
+
+[minuteReadingTime]
+other = "分で読める"
+
+[words]
+other = "文字"
+
+[search]
+other = "検索"
+
+[searchPlaceholder]
+other = "検索"
+
+[tags]
+other = "タグ"
+
+[categories]
+other = "カテゴリー"
+
+[lastUpdated]
+other = "最終更新"
+
+[pageNotFound]
+other = "ページが見つかりません..."
+
+[backToHome]
+other = "ホームに戻る"
+
+[results]
+other = "件の結果"
+
+[for]
+other = "の検索結果"
+
+[clearFilter]
+other = "フィルターをクリア"
+
+[created]
+other = "作成日"
+
+[previous]
+other = "前へ"
+
+[next]
+other = "次へ"
+
+[pinned]
+other = "ピン留め"
+
+[popular_posts]
+other = "人気の投稿"
+
+[post_activity]
+other = "投稿アクティビティ"
+
+[blog]
+other = "ブログ"
+
+[project]
+other = "プロジェクト"
+
+[article]
+other = "記事"
+
+[content_activity]
+other = "コンテンツアクティビティ"
+
+[showcase]
+other = "ショーケース"
+
+[readme]
+other = "README"
+
+[activity_less]
+other = "少ない"
+
+[activity_more]
+other = "多い"
